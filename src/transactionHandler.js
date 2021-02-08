@@ -14,6 +14,7 @@ module.exports.transactionHandler = async trx => {
       const outputs = txData.token.outputs; // recipients array
       const inputAddress = txData.input; // "from" address
       const txid = txData.txid;
+      console.log(JSON.stringify(txData));
 
       //Checking outputs addresses
       for (const output of outputs) {
