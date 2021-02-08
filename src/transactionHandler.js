@@ -26,6 +26,7 @@ module.exports.transactionHandler = async trx => {
               : parseFloat(output.amount);
 
           console.log(amount);
+          amount /= 100000000;//todo wft is this???
           await checkOutput(toAddress, amount, txid, inputAddress);
         }
       }
