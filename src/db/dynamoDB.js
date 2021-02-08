@@ -17,7 +17,7 @@ module.exports.getSession = async key => {
   try {
     session = await dynamoSession.getSession(key.toString());
     console.log("\ndynamoDB:: getSession\n");
-    console.log(session.from.id);
+    console.log(session.id);
 
     function isEmpty(obj) {
       return Object.keys(obj).length === 0;

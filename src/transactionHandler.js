@@ -23,6 +23,8 @@ module.exports.transactionHandler = async trx => {
             tokenType === "integer"
               ? parseInt(output.amount)
               : parseFloat(output.amount);
+
+          console.log(amount);
           await checkOutput(toAddress, amount, txid, inputAddress);
         }
       }
@@ -73,7 +75,7 @@ const updateSession = async (userId, trx, amount) => {
   deposits.txAppearances = deposits.transactions.length;
 
   // Update Session
-  session.wallet.honkPoints = sum(session.wallet.honkPoints, amount);
+  session.wallet.orb = sum(session.wallet.orb, amount);
   session.wallet.transferedDeposits = deposits;
 
   saveSession(userId, session);
@@ -83,13 +85,17 @@ const updateEscrowSession = async (userId, amount) => {
   const session = await getSession(userId);
 
   // Update Session
-  session.wallet.honkPoints = sum(session.wallet.honkPoints, amount);
+  session.wallet.orb = sum(session.wallet.orb, amount);
   session.totalTokensReceived = sum(session.totalTokensReceived, amount);
 
   saveSession(userId, session);
 };
 
 const sum = (val1, val2) => {
+  val1 = val1 || 0;
   const confVal = Math.pow(10, tokenDecimalPlaces);
+
+  console.log(`sum ${val1} ${val2} ${confVal} ${(confVal * val1 + confVal * val2) / confVal}`)
+
   return (confVal * val1 + confVal * val2) / confVal;
 };
