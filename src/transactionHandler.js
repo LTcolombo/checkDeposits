@@ -20,7 +20,7 @@ module.exports.transactionHandler = async trx => {
       for (const output of outputs) {
         if (output.address !== inputAddress) {
           const toAddress = output.address;
-          const amount =
+          var amount =
             tokenType === "integer"
               ? parseInt(output.amount)
               : parseFloat(output.amount);
